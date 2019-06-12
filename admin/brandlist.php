@@ -1,28 +1,28 @@
-﻿<?php include 'inc/header.php';?>
+<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
 
- <?php include '../classess/Category.php'; ?>
+ <?php include '../classess/Brand.php'; ?>
 
 
  <?php
    
-    $cat = new Category() ; 
-    if(isset($_GET['delcate'])){
-    	$id = $_GET['delcate'] ; 
-    	$delCate = $cat->delCatById($id) ; 
+    $brand = new Brand() ; 
+    if(isset($_GET['delbrand'])){
+    	$id = $_GET['delbrand'] ; 
+    	$delBrand = $brand->delBrandById($id); 
     }
-    $getCat=$cat->getAllCat() ; 
+    $getBrand=$brand->getAllBrand() ; 
 ?>
 
 
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Category List</h2>
+                <h2>Brand List</h2>
                 <div class="block">  
 
                 <?php 
-                   if(isset($delCate)){
-                   	echo $delCate ; 
+                   if(isset($delBrand)){
+                   	echo $delBrand ; 
                    }
 
 
@@ -31,22 +31,22 @@
 					<thead>
 						<tr>
 							<th>Serial No.</th>
-							<th>Category Name</th>
+							<th>Brand Name</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php
 
-                        if($getCat){
+                        if($getBrand){
                             $i = 0 ; 
-                        	while($value=$getCat->fetch_assoc()){
+                        	while($value=$getBrand->fetch_assoc()){
 
                                 $i++; ?>
 						       <tr class="odd gradeX">
 							   <td><?php echo $i ; ?></td>
-							   <td><?php echo $value['catName']; ?></td>
-							   <td><a href="catedit.php?catid=<?php  echo $value['catId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delcate=<?php  echo $value['catId']; ?>">Delete</a></td>
+							   <td><?php echo $value['brandName']; ?></td>
+							   <td><a href="brandedit.php?brandid=<?php  echo $value['brandId']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delbrand=<?php  echo $value['brandId']; ?>">Delete</a></td>
 						       </tr>
                         <?php } } ; ?>
 
